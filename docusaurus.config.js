@@ -33,6 +33,13 @@ const config = {
     locales: ['en'],
   },
 
+  // Add mermaid support
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   presets: [
     [
       'classic',
@@ -131,3 +138,4 @@ const config = {
 };
 
 module.exports = config;
+
