@@ -77,12 +77,7 @@ const config = {
             docId: 'intro',
             position: 'left',
             label: 'Tutorial',
-          },
-          {
-            href: 'https://github.com/AleksandrGontcharov/',
-            label: 'GitHub',
-            position: 'right',
-          },
+          }
         ],
       },
       footer: {
