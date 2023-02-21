@@ -1,6 +1,8 @@
 /* add font awesome support and also run "yarn add @fortawesome/fontawesome-free" */
 
 @import '@fortawesome/fontawesome-free/css/all.css';
+@import url('https://mshaugh.github.io/nerdfont-webfonts/build/nerdfont-webfonts.css');
+/* Nerd Fonts: https://mshaugh.github.io/nerdfont-webfonts/ */
 
 
 /**
@@ -20,8 +22,21 @@
 	--ifm-color-primary-lightest: #3cad6e;
 	--ifm-code-font-size: 95%;
 	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-	--ifm-font-family-base: "Cousine Nerd Font";
+	--ifm-font-family-base: "agave Nerd Font";
+	/* --ifm-font-family-base: "MesloLGLDZ Nerd Font"; */
+	/* --ifm-font-family-base: "mononoki Nerd Font"; */
+	/* --ifm-font-family-base: "ProFontWindows Nerd Font"; */
+	/* --ifm-font-family-base: "ProggyCleanTTCE Nerd Font"; */
+	/* --ifm-font-family-base: "UbuntuCondensed Nerd Font"; */
+	/* --ifm-font-family-base: "Ubuntu Nerd Font"; */
+	/* --ifm-font-family-base: "Hack Nerd Font"; */
+	/* --ifm-font-family-base: "Lekton Nerd Font"; */
+	/* --ifm-font-family-base: "LiterationSans Nerd Font"; */
+	/* --ifm-font-family-base: "Cousine Nerd Font"; */
+	/* --ifm-font-family-base: "Anonymice Nerd Font"; */
+	/* --ifm-font-family-base: "CaskaydiaCove Nerd Font"; */
 }
+
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
