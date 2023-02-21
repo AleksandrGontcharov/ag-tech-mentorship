@@ -69,7 +69,7 @@ const config = {
         title: 'AG Tech Mentorship',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/ag-logo.png',
         },
         items: [
           {
