@@ -50,7 +50,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/AleksandrGontcharov/ag-tech-mentorship/blob/master/',
         },
         blog: false,
         theme: {
@@ -79,7 +79,7 @@ const config = {
             label: 'Tutorial',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/AleksandrGontcharov/',
             label: 'GitHub',
             position: 'right',
           },
