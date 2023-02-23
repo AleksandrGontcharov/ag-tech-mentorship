@@ -126,3 +126,10 @@ choco install jq
 # install grep
 choco install grep
 ```
+
+## Configure git
+
+```powershell
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"     
+```
