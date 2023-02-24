@@ -1,8 +1,12 @@
-import { parseQuizFile } from '../quiz/helpers/parseQuizfile';
+import fs from 'fs';
+import { parseTomlString } from '../quiz/helpers/parseQuizfile';
 
 describe('parseQuizFile', () => {
     test('parses a quiz file with a single question', () => {
-        const quiz = parseQuizFile('src/components/quiz/quiz_questions/samplequiz.toml');
+        let filename = 'src/components/quiz/quiz_questions/samplequiz.toml';
+        const tomlFile = fs.readFileSync(filename, 'utf8');
+
+        const quiz = parseTomlString(tomlFile);
 
         expect(quiz.title).toBe('Sample Quiz');
         expect(quiz.points).toBe(10);

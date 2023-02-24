@@ -1,4 +1,3 @@
-import fs from 'fs';
 import toml from 'toml';
 
 export interface QuizQuestion {
@@ -16,10 +15,7 @@ export interface Quiz {
     questions: QuizQuestion[];
 }
 
-function parseQuizFile(filename: string): Quiz {
-    // Read the TOML file
-    const tomlData: string = fs.readFileSync(filename, 'utf8');
-
+export function parseTomlString(tomlData: string): Quiz {
     // Parse the TOML data into a JavaScript object
     const quizData: any = toml.parse(tomlData);
 
@@ -39,5 +35,3 @@ function parseQuizFile(filename: string): Quiz {
     // Return the parsed quiz data
     return quiz;
 }
-
-export { parseQuizFile };
