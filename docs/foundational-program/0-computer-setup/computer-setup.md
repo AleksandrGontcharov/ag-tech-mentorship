@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 
 # → Windows
----
+
 
 This setup is for 2023.
 
@@ -93,7 +93,9 @@ code $PROFILE
 
 ### Directly from Powershell
 
-*Note: you may need to open PowerShell as Administrator*
+:::caution  
+You may need to open PowerShell as Administrator
+:::
 
 ```powershell
 # Visual Studio Code
@@ -111,13 +113,20 @@ winget install Python.Python.3.11
 
 [Chocolatey Software | Installing Chocolatey](https://chocolatey.org/install)
 
-*Note: this can be done with this command*:
+:::info
+Chocolatey is a tool that you can use to install software.
+:::
+You can install chocolatey with this comman
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-### Install tools with Chocolatey
-*Note: you may need to open PowerShell as Administrator*
+### Install more software with Chocolatey
+
+:::caution
+You may need to open PowerShell as Administrator.
+:::
+
 ```powershell
 # install the just command runner
 choco install just
@@ -127,7 +136,15 @@ choco install jq
 choco install grep
 ```
 
+:::tip
+`just`,`jq`, and `grep` are great tools that you will learn how to use later.
+:::
+
 ## Configure git
+
+:::info
+You will need this to use git.
+:::
 
 ```powershell
 git config --global user.email "you@example.com"
