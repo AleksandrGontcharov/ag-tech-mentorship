@@ -1,0 +1,19 @@
+[quiz]
+title = "Sample Quiz"
+points = 10
+
+[[quiz.questions]]
+question_type = "single_choice"
+question = "What is the capital of France?"
+options = ["Paris", "London", "Madrid", "Berlin"]
+answer = "Paris"
+explanations = ["Correct!", "Incorrect", "Incorrect", "Incorrect"]
+points = 5
+
+[[quiz.questions]]
+question_type = "single_choice"
+question = "What is the highest mountain in the world?"
+options = ["K2", "Denali", "Mount Everest", "Kilimanjaro"]
+answer = "Mount Everest"
+explanations = ["Incorrect", "Incorrect", "Correct!", "Incorrect"]
+points = 5
