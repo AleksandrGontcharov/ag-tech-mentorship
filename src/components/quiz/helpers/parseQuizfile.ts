@@ -1,7 +1,15 @@
 import toml from 'toml';
 
-export interface QuizQuestion {
-    question_type: 'single_choice' | 'multi_choice';
+// export type QuestionType = 'single_choice' | 'multi_choice';
+
+export enum QuestionType {
+    SingleChoice = 'single_choice',
+    MultiChoice = 'multi_choice',
+}
+
+export type QuizQuestionType = {
+    question_type: QuestionType;
+    question_index: number;
     question: string;
     options: string[];
     answer: number[];
@@ -9,19 +17,19 @@ export interface QuizQuestion {
     points: number;
 }
 
-export interface Quiz {
+export type QuizType = {
     title: string;
     points: number;
-    questions: QuizQuestion[];
+    questions: QuizQuestionType[];
     answers: number[][];
 }
 
-export function parseTomlString(tomlData: string): Quiz {
+export function parseTomlString(tomlData: string): QuizType {
     // Parse the TOML data into a JavaScript object
     const quizData: any = toml.parse(tomlData);
 
-    // Convert the quiz data into a Quiz object
-    const quiz: Quiz = {
+    // Convert the quiz data into a QuizType object
+    const quiz: QuizType = {
         title: quizData.quiz.title,
         points: quizData.quiz.points,
         answers: quizData.quiz.questions.map((question) => question.answer),
@@ -32,6 +40,7 @@ export function parseTomlString(tomlData: string): Quiz {
             answer: questionData.answer,
             explanations: questionData.explanations,
             points: questionData.points,
+            question_index: questionData.question_index
         })),
     };
     // Return the parsed quiz data
