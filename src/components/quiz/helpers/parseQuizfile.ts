@@ -1,7 +1,7 @@
 import fs from 'fs';
 import toml from 'toml';
 
-interface QuizQuestion {
+export interface QuizQuestion {
     question_type: 'single_choice' | 'multi_choice';
     question: string;
     options: string[];
@@ -10,7 +10,7 @@ interface QuizQuestion {
     points: number;
 }
 
-interface Quiz {
+export interface Quiz {
     title: string;
     points: number;
     questions: QuizQuestion[];
