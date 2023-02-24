@@ -38,5 +38,8 @@ describe('parseQuizFile', () => {
         expect(quiz.questions[2].question_type).toBe('multi_choice');
 
         expect(quiz.questions[2].answer).toEqual([0, 2, 5]);
+
+        expect(quiz.answers).toEqual([[0], [2], [0, 2, 5]]);
+
     });
 });

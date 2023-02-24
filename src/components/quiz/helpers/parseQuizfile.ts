@@ -13,6 +13,7 @@ export interface Quiz {
     title: string;
     points: number;
     questions: QuizQuestion[];
+    answers: number[][];
 }
 
 export function parseTomlString(tomlData: string): Quiz {
@@ -23,6 +24,7 @@ export function parseTomlString(tomlData: string): Quiz {
     const quiz: Quiz = {
         title: quizData.quiz.title,
         points: quizData.quiz.points,
+        answers: quizData.quiz.questions.map((question) => question.answer),
         questions: quizData.quiz.questions.map((questionData: any) => ({
             question_type: questionData.question_type,
             question: questionData.question,
