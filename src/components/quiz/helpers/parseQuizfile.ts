@@ -4,7 +4,7 @@ export interface QuizQuestion {
     question_type: 'single_choice' | 'multi_choice';
     question: string;
     options: string[];
-    answer: number[] | number;
+    answer: number[];
     explanations: string[];
     points: number;
 }

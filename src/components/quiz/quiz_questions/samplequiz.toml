@@ -6,7 +6,7 @@ points = 10
 question_type = "single_choice"
 question = "What is the capital of France?"
 options = ["Paris", "London", "Madrid", "Berlin"]
-answer = "Paris"
+answer = [0]
 explanations = ["Correct!", "Incorrect", "Incorrect", "Incorrect"]
 points = 5
 
@@ -14,6 +14,14 @@ points = 5
 question_type = "single_choice"
 question = "What is the highest mountain in the world?"
 options = ["K2", "Denali", "Mount Everest", "Kilimanjaro"]
-answer = "Mount Everest"
+answer = [2]
 explanations = ["Incorrect", "Incorrect", "Correct!", "Incorrect"]
 points = 5
+
+[[quiz.questions]]
+question_type = "multi_choice"
+question = "Which of the following are countries in South America?"
+options = ["Brazil", "Russia", "Peru", "India", "China", "Chile"]
+answer = [0, 2, 5]
+explanations = ["Brazil is in South America", "Peru is in South America", "Chile is in South America", "India is not in South America", "China is not in South America", "Russia is not in South America"]
+points = 10
