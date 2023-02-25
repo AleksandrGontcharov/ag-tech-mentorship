@@ -132,7 +132,7 @@ const config = {
         // theme: require('prism-react-renderer/themes/vsDark'),
         // theme: lightCodeTheme,
         darkTheme: require('prism-react-renderer/themes/nightOwl'),
-        additionalLanguages: ['powershell', 'csharp'],
+        additionalLanguages: ['powershell', 'csharp', 'shell-session'],
       },
     }),
 };
