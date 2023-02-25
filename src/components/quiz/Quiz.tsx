@@ -5,9 +5,6 @@ import { QuizQuestion } from "./QuizQuestion";
 
 
 export default function Quiz(filename: string) {
-  const methods = useForm();
-  const onSubmit = data => console.log(data);
-
   // for now just load the quiz az a string
   const tomlData = `[quiz]
     title = "Sample Quiz"
@@ -41,6 +38,13 @@ export default function Quiz(filename: string) {
     points = 10`;
 
   const quiz: QuizType = parseTomlString(tomlData);
+
+  const methods = useForm();
+  // const onSubmit = data => console.log(data);
+  const onSubmit = data => {
+    console.table(data);
+    console.table(quiz.answers)
+  };
 
   const initialUserAnswers: number[][] = Array(quiz.answers.length).fill(0).map(() => []);
 
