@@ -9,7 +9,7 @@ export function QuizQuestion(props: { quizQuestion: QuizQuestionType }) {
         <div key={JSON.stringify(props.quizQuestion.options)}>
             <h3> Question {props.quizQuestion.question_index} : {props.quizQuestion.question} </h3>
             {options.map(option => (
-                <QuizQuestionOption option={option} questionType={questionType} />
+                <QuizQuestionOption option={option} questionType={questionType} quizQuestion={props.quizQuestion} />
             ))}
         </div>
     );

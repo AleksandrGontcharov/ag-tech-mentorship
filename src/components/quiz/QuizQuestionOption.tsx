@@ -1,12 +1,12 @@
 import React from "react"
-import { QuestionType } from "./helpers/parseQuizfile"
+import { QuestionType, QuizQuestionType } from "./helpers/parseQuizfile"
 
-export function QuizQuestionOption(props: { option: string, questionType: QuestionType }) {
+export function QuizQuestionOption(props: { option: string, questionType: QuestionType, quizQuestion: QuizQuestionType }) {
     if (props.questionType === QuestionType.SingleChoice) {
         return (
             <div key={props.option}>
                 <label key={props.option}>
-                    <input type="radio" value="option1" key={props.option} />
+                    <input type="radio" value={props.option} key={props.option} name={JSON.stringify(props.quizQuestion)} />
                     {props.option}
                 </label>
             </div>
