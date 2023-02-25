@@ -1,28 +1,28 @@
 import React from "react"
 import { QuestionType } from "./helpers/parseQuizfile"
 
-export function QuizQuestionOption(option: string, questionType: QuestionType) {
-    if (questionType === QuestionType.SingleChoice) {
+export function QuizQuestionOption(props: { option: string, questionType: QuestionType }) {
+    if (props.questionType === QuestionType.SingleChoice) {
         return (
-            <div key={option}>
-                <label key={option}>
-                    <input type="radio" value="option1" key={option} />
-                    {option}
+            <div key={props.option}>
+                <label key={props.option}>
+                    <input type="radio" value="option1" key={props.option} />
+                    {props.option}
                 </label>
             </div>
         )
-    } else if (questionType === QuestionType.MultiChoice) {
+    } else if (props.questionType === QuestionType.MultiChoice) {
         return (
-            <div key={option}>
-                <label key={option}>
+            <div key={props.option}>
+                <label key={props.option}>
                     <input type="checkbox" />
-                    {option}
+                    {props.option}
                 </label>
             </div >
         )
     } else {
         return (
-            <h4 key={option}> "ERROR" + {option}</h4>
+            <h4 key={props.option}> "ERROR" + {props.option}</h4>
         )
     }
 }

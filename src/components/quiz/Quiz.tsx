@@ -47,7 +47,7 @@ export default function Quiz(filename: string) {
     <>
       <h2> Quiztitle: {quiz.title} </h2>
       {quiz.questions.map(quizQuestion => (
-        QuizQuestion(quizQuestion)
+        <QuizQuestion key={quizQuestion.question_index} quizQuestion={quizQuestion} />
       ))}
     </>
   );
