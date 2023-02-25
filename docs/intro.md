@@ -3,9 +3,11 @@ sidebar_position: 1
 ---
 
 # Welcome
+
 ---
 
 ### Networking Diagram
+
 ```mermaid
 graph LR
     Internet(fab:fa-internet-explorer Internet) === HomeRouter[fa:fa-wifi HomeRouter </br> subnet: 192.168.1.0/24 </br> gateway: 192.168.1.1]
@@ -14,17 +16,17 @@ graph LR
     classDef whiteClass fill:#0000,stroke:#f66,stroke-width:1px
     subgraph hyper-V["Hyper-V"]
         externalSwitch === VMrouter[fa:fa-computer VM-router  </br> ip: 192.168.1.100 </br> gateway-red: 192.168.2.1</br> gateway-green: 192.168.2.65</br> gateway-blue: 192.168.2.129 ]
-        VMrouter === Switch-green:::greenClass 
+        VMrouter === Switch-green:::greenClass
         VMrouter === Switch-red:::redClass
         VMrouter === Switch-blue:::blueClass
-        classDef greenClass fill:#bdf0cc,stroke:#333,stroke-width:3px
-        classDef greenClassDashed fill:#bdf0cc,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3
-        classDef redClass  fill:#f0bdc7,stroke:#333,stroke-width:3px
-        classDef redClassDashed  fill:#f0bdc7,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3
-        classDef blueClass  fill:lightblue,stroke:#333,stroke-width:3px
-        classDef blueClassDashed  fill:lightblue,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3
+        classDef greenClass fill:#bdf0cc,stroke:#333,stroke-width:3px, color: black;
+        classDef greenClassDashed fill:#bdf0cc,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3, color: black;
+        classDef redClass  fill:#f0bdc7,stroke:#333,stroke-width:3px, color: black;
+        classDef redClassDashed  fill:#f0bdc7,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3, color: black;
+        classDef blueClass  fill:lightblue,stroke:#333,stroke-width:3px, color: black;
+        classDef blueClassDashed  fill:lightblue,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3, color: black;
 
-        
+
         subnet-red:::redClass
         ipaddressrange-red:::redClassDashed
         subnet-green:::greenClass
