@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { QuizType, parseTomlString } from "./helpers/parseQuizfile"; // Assuming you have defined QuizQuestionType type in a separate file.
 import { QuizQuestion } from "./QuizQuestion";
 
 
 export default function Quiz(filename: string) {
+  const methods = useForm();
+  const onSubmit = data => console.log(data);
 
   // for now just load the quiz az a string
   const tomlData = `[quiz]
@@ -44,11 +47,14 @@ export default function Quiz(filename: string) {
   const [answers, setAnswers] = useState<number[][]>(initialUserAnswers);
 
   return (
-    <>
-      <h2> Quiztitle: {quiz.title} </h2>
-      {quiz.questions.map(quizQuestion => (
-        <QuizQuestion key={quizQuestion.question_index} quizQuestion={quizQuestion} />
-      ))}
-    </>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <h2> Quiztitle: {quiz.title} </h2>
+        {quiz.questions.map(quizQuestion => (
+          <QuizQuestion key={quizQuestion.question_index} quizQuestion={quizQuestion} />
+        ))}
+        <button type="submit">Submit Answers</button>
+      </form>
+    </FormProvider>
   );
 }
