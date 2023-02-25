@@ -11,25 +11,25 @@ export default function Quiz(filename: string) {
     points = 10
   
     [[quiz.questions]]
-    question_index = 1
+    question_index = 0
     question_type = "single_choice"
     question = "What is the capital of France?"
     options = ["Paris", "London", "Madrid", "Berlin"]
-    answer = [0]
+    answer = 0
     explanations = ["Correct!", "Incorrect", "Incorrect", "Incorrect"]
     points = 5
   
     [[quiz.questions]]
-    question_index = 2
+    question_index = 1
     question_type = "single_choice"
     question = "What is the highest mountain in the world?"
     options = ["K2", "Denali", "Mount Everest", "Kilimanjaro"]
-    answer = [2]
+    answer = 2
     explanations = ["Incorrect", "Incorrect", "Correct!", "Incorrect"]
     points = 5
   
     [[quiz.questions]]
-    question_index = 3
+    question_index = 2
     question_type = "multi_choice"
     question = "Which of the following are countries in South America?"
     options = ["Brazil", "Russia", "Peru", "India", "China", "Chile"]
@@ -39,16 +39,39 @@ export default function Quiz(filename: string) {
 
   const quiz: QuizType = parseTomlString(tomlData);
 
-  const methods = useForm();
-  // const onSubmit = data => console.log(data);
-  const onSubmit = data => {
-    console.table(data);
-    console.table(quiz.answers)
+  const methods = useForm({
+    defaultValues: {
+      0: '',
+      1: '',
+      2: ''
+    }
+  });
+
+  const onSubmit = (data: any) => {
+
+    const transformedArray = Object.values(data).map((element: string | string[]) => {
+      if (typeof element === "string") {
+        return parseInt(element, 10);
+      } else {
+        return element.map((nestedElement) => parseInt(nestedElement, 10));
+      }
+    });
+
+    console.table(transformedArray);
+    console.table(quiz.answers);
+
+    const arraysAreEqual = transformedArray.every((element, index) => element === quiz.answers[index]);
+
+
+    if (arraysAreEqual) {
+      console.log("correct")
+    }
+    else {
+      console.log("incorrect")
+    }
   };
 
   const initialUserAnswers: number[][] = Array(quiz.answers.length).fill(0).map(() => []);
-
-  const [answers, setAnswers] = useState<number[][]>(initialUserAnswers);
 
   return (
     <FormProvider {...methods}>

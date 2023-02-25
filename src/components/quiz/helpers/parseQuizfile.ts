@@ -21,7 +21,7 @@ export type QuizType = {
     title: string;
     points: number;
     questions: QuizQuestionType[];
-    answers: number[][];
+    answers: (number | number[])[];
 }
 
 export function parseTomlString(tomlData: string): QuizType {
