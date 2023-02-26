@@ -44,8 +44,7 @@ export default function Quiz(filename: string) {
       0: '',
       1: '',
       2: ''
-    }
-  });
+    }});
 
   const onSubmit = (data: any) => {
 
@@ -65,8 +64,6 @@ export default function Quiz(filename: string) {
       console.log("incorrect")
     }
   };
-
-  const initialUserAnswers: number[][] = Array(quiz.answers.length).fill(0).map(() => []);
 
   return (
     <FormProvider {...methods}>
