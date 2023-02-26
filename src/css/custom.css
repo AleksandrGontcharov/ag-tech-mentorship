@@ -4,7 +4,6 @@
 @import url('https://mshaugh.github.io/nerdfont-webfonts/build/nerdfont-webfonts.css');
 /* Nerd Fonts: https://mshaugh.github.io/nerdfont-webfonts/ */
 
-
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -13,54 +12,52 @@
 
 /* You can override the default Infima variables here. */
 :root {
-	--ifm-color-primary: #0a5c82;
-	--ifm-color-primary-dark: #29784c;
-	--ifm-color-primary-darker: #277148;
-	--ifm-color-primary-darkest: #205d3b;
-	--ifm-color-primary-light: #33925d;
-	--ifm-color-primary-lighter: #359962;
-	--ifm-color-primary-lightest: #3cad6e;
-	--ifm-code-font-size: 95%;
-	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-	--ifm-font-family-base: "agave Nerd Font";
-	/* --ifm-font-family-base: "MesloLGLDZ Nerd Font"; */
-	/* --ifm-font-family-base: "mononoki Nerd Font"; */
-	/* --ifm-font-family-base: "ProFontWindows Nerd Font"; */
-	/* --ifm-font-family-base: "ProggyCleanTTCE Nerd Font"; */
-	/* --ifm-font-family-base: "UbuntuCondensed Nerd Font"; */
-	/* --ifm-font-family-base: "Ubuntu Nerd Font"; */
-	/* --ifm-font-family-base: "Hack Nerd Font"; */
-	/* --ifm-font-family-base: "Lekton Nerd Font"; */
-	/* --ifm-font-family-base: "LiterationSans Nerd Font"; */
-	/* --ifm-font-family-base: "Cousine Nerd Font"; */
-	/* --ifm-font-family-base: "Anonymice Nerd Font"; */
-	/* --ifm-font-family-base: "CaskaydiaCove Nerd Font"; */
+  --ifm-color-primary: #0a5c82;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'agave Nerd Font';
+  /* --ifm-font-family-base: "MesloLGLDZ Nerd Font"; */
+  /* --ifm-font-family-base: "mononoki Nerd Font"; */
+  /* --ifm-font-family-base: "ProFontWindows Nerd Font"; */
+  /* --ifm-font-family-base: "ProggyCleanTTCE Nerd Font"; */
+  /* --ifm-font-family-base: "UbuntuCondensed Nerd Font"; */
+  /* --ifm-font-family-base: "Ubuntu Nerd Font"; */
+  /* --ifm-font-family-base: "Hack Nerd Font"; */
+  /* --ifm-font-family-base: "Lekton Nerd Font"; */
+  /* --ifm-font-family-base: "LiterationSans Nerd Font"; */
+  /* --ifm-font-family-base: "Cousine Nerd Font"; */
+  /* --ifm-font-family-base: "Anonymice Nerd Font"; */
+  /* --ifm-font-family-base: "CaskaydiaCove Nerd Font"; */
 }
-
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-	--ifm-color-primary: #0a5c82;
-	--ifm-color-primary-dark: #21af90;
-	--ifm-color-primary-darker: #1fa588;
-	--ifm-color-primary-darkest: #1a8870;
-	--ifm-color-primary-light: #29d5b0;
-	--ifm-color-primary-lighter: #32d8b4;
-	--ifm-color-primary-lightest: #4fddbf;
-	/* --ifm-heading-color: #7ee787; */
-	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #0a5c82;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  /* --ifm-heading-color: #7ee787; */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 html[data-theme='dark'] {
-	--ifm-background-color: #0d1117;
-	--ifm-background-surface-color: #131b29;
-	--ifm-menu-color-active: #5ea1c1;
-	--ifm-heading-color: #5ea1c1;
-	--ifm-breadcrumb-color-active: #5ea1c1;
-	--ifm-navbar-link-hover-color: #5ea1c1;
-	;
+  --ifm-background-color: #0d1117;
+  --ifm-background-surface-color: #131b29;
+  --ifm-menu-color-active: #5ea1c1;
+  --ifm-heading-color: #5ea1c1;
+  --ifm-breadcrumb-color-active: #5ea1c1;
+  --ifm-navbar-link-hover-color: #5ea1c1;
 }
 
 .table-of-contents__link--active {
-	color: #5ea1c1;
+  color: #5ea1c1;
 }

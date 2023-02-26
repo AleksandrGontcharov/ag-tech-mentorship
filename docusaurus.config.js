@@ -82,7 +82,7 @@ const config = {
             docId: 'intro',
             position: 'left',
             label: 'Start Here',
-          }
+          },
         ],
       },
       footer: {
@@ -103,7 +103,7 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/AleksandrGontcharov/',
-              }
+              },
             ],
           },
           {
@@ -138,4 +138,3 @@ const config = {
 };
 
 module.exports = config;
-

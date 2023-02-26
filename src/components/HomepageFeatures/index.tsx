@@ -14,7 +14,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Master the essential tools and skills that will serve you for years to come.
+        Master the essential tools and skills that will serve you for years to
+        come.
       </>
     ),
   },
@@ -22,9 +23,7 @@ const FeatureList: FeatureItem[] = [
     title: 'Hands-on learning',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
-      <>
-        Learn through workshop style events and one-on-one mentorship.
-      </>
+      <>Learn through workshop style events and one-on-one mentorship.</>
     ),
   },
   {
@@ -32,7 +31,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        I believe that mentorship and support is a rare gift that can change your life.
+        I believe that mentorship and support is a rare gift that can change
+        your life.
       </>
     ),
   },

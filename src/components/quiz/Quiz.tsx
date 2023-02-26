@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { QuizType, parseTomlString } from "./helpers/parseQuizfile"; // Assuming you have defined QuizQuestionType type in a separate file.
-import { QuizQuestion } from "./QuizQuestion";
-
+import React, { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { QuizType, parseTomlString } from './helpers/parseQuizfile'; // Assuming you have defined QuizQuestionType type in a separate file.
+import { QuizQuestion } from './QuizQuestion';
 
 export default function Quiz(filename: string) {
   // for now just load the quiz az a string
@@ -43,26 +42,25 @@ export default function Quiz(filename: string) {
     defaultValues: {
       0: '',
       1: '',
-      2: ''
-    }
+      2: '',
+    },
   });
 
   const onSubmit = (data: any) => {
-
-    const transformedArray = Object.values(data).map((element: string | string[]) => {
-      if (typeof element === "string") {
-        return parseInt(element, 10);
-      } else {
-        return element.map((nestedElement) => parseInt(nestedElement, 10));
+    const transformedArray = Object.values(data).map(
+      (element: string | string[]) => {
+        if (typeof element === 'string') {
+          return parseInt(element, 10);
+        } else {
+          return element.map((nestedElement) => parseInt(nestedElement, 10));
+        }
       }
-    });
-
+    );
 
     if (transformedArray.toString() === quiz.answers.toString()) {
-      console.log("correct")
-    }
-    else {
-      console.log("incorrect")
+      console.log('correct');
+    } else {
+      console.log('incorrect');
     }
   };
 
@@ -70,8 +68,11 @@ export default function Quiz(filename: string) {
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <h2> Quiztitle: {quiz.title} </h2>
-        {quiz.questions.map(quizQuestion => (
-          <QuizQuestion key={quizQuestion.question_index} quizQuestion={quizQuestion} />
+        {quiz.questions.map((quizQuestion) => (
+          <QuizQuestion
+            key={quizQuestion.question_index}
+            quizQuestion={quizQuestion}
+          />
         ))}
         <button type="submit">Submit Answers</button>
       </form>
