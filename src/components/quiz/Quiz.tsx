@@ -44,7 +44,8 @@ export default function Quiz(filename: string) {
       0: '',
       1: '',
       2: ''
-    }});
+    }
+  });
 
   const onSubmit = (data: any) => {
 
