@@ -57,13 +57,8 @@ export default function Quiz(filename: string) {
       }
     });
 
-    console.table(transformedArray);
-    console.table(quiz.answers);
 
-    const arraysAreEqual = transformedArray.every((element, index) => element === quiz.answers[index]);
-
-
-    if (arraysAreEqual) {
+    if (transformedArray.toString() === quiz.answers.toString()) {
       console.log("correct")
     }
     else {
