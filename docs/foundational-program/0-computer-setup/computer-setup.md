@@ -51,7 +51,7 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 ### Configure your PowerShell profile
 
-This will open the **PowerShell** profile, if it prompts you to create the file if it doesn't exist, say yes. The powershell profile is a script executed everytime you start PowerShell.
+This will open the **PowerShell** profile, if it prompts you to create the file if it doesn't exist, say yes. The PowerShell profile is a script executed every time you start PowerShell.
 
 ```powershell
 notepad $PROFILE
@@ -117,7 +117,7 @@ winget install Python.Python.3.11
 :::info
 Chocolatey is a tool that you can use to install software.
 :::
-You can install chocolatey with this comman
+You can install chocolatey with this command
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
