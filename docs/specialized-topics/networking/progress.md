@@ -12,6 +12,8 @@ As you do things I advise to capture some key learnings, conclusions or even sni
 
 Prerequisite: set up Hyper-V
 
+## Create the virtual hardware
+
 ### Create the switches
 
 - [x] Create 3 private virtual switches called `red`, `green`, `blue`
@@ -30,7 +32,11 @@ Prerequisite: set up Hyper-V
     - `ping google.com`
     - `ip addr show`
 
-### Setup for next steps
+## Create the settings for dhcp
+
+- [x] configure `dhcp` server to allocate IPs for other client-vms
+
+### Networking diagram
 
 ```mermaid
 graph BT
@@ -90,3 +96,96 @@ graph BT
 end
 ```
 
+### Router settings
+
+These settings on my router allow it to be configured as a dhcp server
+
+<details>
+<summary>sudo vim /etc/netplan/00-installer-config.yaml</summary>
+
+```
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: true
+    eth1: # RED NETWORK
+      addresses:
+        - 192.168.2.1/26
+      nameservers:
+        addresses: [127.0.0.1]
+      routes:
+        - to: 127.0.0.1
+          via: 192.168.2.1
+    eth2: # GREEN NETWORK
+      addresses:
+        - 192.168.2.65/26
+      nameservers:
+        addresses: [127.0.0.1]
+      routes:
+        - to: 127.0.0.1
+          via: 192.168.2.65
+    eth3: # BLUE NETWORK
+      addresses:
+        - 192.168.2.129/26
+      nameservers:
+        addresses: [127.0.0.1]
+      routes:
+        - to: 127.0.0.1
+          via: 192.168.2.129
+```
+</details>
+
+<details>
+<summary>sudo vim /etc/dhcp/dhcpd.conf</summary>
+
+```
+default-lease-time 600;
+max-lease-time 7200;
+
+ddns-update-style none;
+
+authoritative;
+
+# RED
+subnet 192.168.2.0 netmask 255.255.255.192 {
+  range 192.168.2.2 192.168.2.62;
+  option routers 192.168.2.1;
+  option domain-name-servers 127.0.0.1;
+  interface eth1;
+}
+# GREEN
+subnet 192.168.2.64 netmask 255.255.255.192 {
+  range 192.168.2.66 192.168.2.126;
+  option routers 192.168.2.65;
+  option domain-name-servers 127.0.0.1;
+  interface eth2;
+}
+# BLUE
+subnet 192.168.2.128 netmask 255.255.255.192 {
+  range 192.168.2.130 192.168.2.190;
+  option routers 192.168.2.129;
+  option domain-name-servers 127.0.0.1;
+  interface eth3;
+}
+```
+</details>
+
+### Client VM settings (red-a, red-b etc.)
+
+These settings on my router allow it to be configured as a dhcp server
+
+
+<details>
+<summary>sudo vim /etc/dhcp/dhcpd.conf</summary>
+
+```
+network:
+  version: 2
+  ethernets:
+    eth0:
+      dhcp4: true
+```
+
+</details>

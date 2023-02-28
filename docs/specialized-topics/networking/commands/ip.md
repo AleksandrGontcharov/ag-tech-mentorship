@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 #  ip
@@ -11,8 +11,8 @@ ___
 
 Show network interface configuration details.
 
-```
-ip addr show
+```shell-session
+agontcharov@router:~$ ip addr show
 
 5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
     link/ether 00:15:5d:01:0b:12 brd ff:ff:ff:ff:ff:ff
