@@ -4,13 +4,7 @@ sidebar_position: 2
 
 #   Progress
 
-In this exercise you'll be pretending to be a network admin and will need setup some very typical network configurations from scratch. You'll have to deal with failures on every 2nd step and through troubleshooting of those failures you learn all the fundamentals.
-
-You should do that sequentially (order is intentionally chosen) and can choose to stop any time without feeling bad about it - most people actually don't go to Anycast/BGP parts
-
-As you do things I advise to capture some key learnings, conclusions or even snippets of concrete commands right in this document using different font or color, as you do things. Try to keep it compressed. You'll realize that this will be a useful document for you to return later at some point for hints or instructions on how to do something.
-
-Prerequisite: set up Hyper-V
+**Prerequisite:** Set up Hyper-V.
 
 ## Create the virtual hardware
 
