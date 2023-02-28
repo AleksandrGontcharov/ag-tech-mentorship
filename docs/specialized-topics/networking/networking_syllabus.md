@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Networking Syllabus
+#  Networking Syllabus
 
 In this exercise you'll be pretending to be a network admin and will need setup some very typical network configurations from scratch. You'll have to deal with failures on every 2nd step and through troubleshooting of those failures you learn all the fundamentals.
 

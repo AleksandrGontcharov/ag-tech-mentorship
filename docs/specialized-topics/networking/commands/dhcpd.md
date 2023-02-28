@@ -4,28 +4,33 @@ sidebar_position: 3
 
 #  dhcpd
 ___
+
+**dhcpd** assigns IP addresses to devices on a network.
+
 [Documentation](https://ubuntu.com/server/docs/network-dhcp)
 
+---
+
 ## Installation
+---
+
 
 ```bash
 sudo apt install isc-dhcp-server
 ```
 
+
+## Configure dhcpd
+---
+
 :::caution  
 After changing the config files you need to restart the `dhcpd` service:
 
 ```
-# Check syntax
-sudo dhcpd -t -cf /etc/dhcp/dhcpd.conf
-```
-
-```
-# Restart service
-sudo systemctl restart isc-dhcp-server.service
+sudo dhcpd -t -cf /etc/dhcp/dhcpd.conf # Check syntax
+sudo systemctl restart isc-dhcp-server.service # Restart service
 ```
 :::
-## Configure dhcpd
 
 This configuration file:
 

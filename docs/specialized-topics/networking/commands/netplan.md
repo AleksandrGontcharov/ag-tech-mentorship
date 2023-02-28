@@ -4,22 +4,26 @@ sidebar_position: 2
 
 #  netplan
 ___
-## Set a static ip address
----
+
+Netplan manages network configuration in Ubuntu.
 
 [Documentation](https://netplan.io/)
 
-After changing the config files, you need to run:
-
-```
-sudo netplan apply
-```
+---
 
 This configuration file:
 
 ```bash
 sudo vim /etc/netplan/00-installer-config.yaml
 ```
+
+:::caution  
+After changing the config files, you need to run:
+
+```
+sudo netplan apply
+```
+:::
 
 has the format:
 
