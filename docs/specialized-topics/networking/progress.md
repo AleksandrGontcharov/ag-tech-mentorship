@@ -30,112 +30,63 @@ Prerequisite: set up Hyper-V
     - `ping google.com`
     - `ip addr show`
 
-### Setup so far
+### Setup for next steps
 
 ```mermaid
-graph TB
+graph BT
+    Internet(fab:fa-internet-explorer Internet) === HomeRouter[fa:fa-wifi HomeRouter </br> subnet: 192.168.1.0/24 </br> gateway: 192.168.1.1]
+    HomeRouter === externalSwitch[fa:fa-server switch-external]
     hyper-V:::whiteClass
     classDef whiteClass fill:#0000,stroke:#f66,stroke-width:1px
     subgraph hyper-V["Hyper-V"]
-        externalSwitch === VMrouter[fa:fa-computer VM-router]
-        VMrouter === Switch-green:::greenClass
-        VMrouter === Switch-red:::redClass
-        VMrouter === Switch-blue:::blueClass
-        classDef greenClass fill:#bdf0cc,stroke:#333,stroke-width:3px
-        classDef greenClassDashed fill:#bdf0cc,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3
-        classDef redClass  fill:#f0bdc7,stroke:#333,stroke-width:3px
-        classDef redClassDashed  fill:#f0bdc7,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3
-        classDef blueClass  fill:lightblue,stroke:#333,stroke-width:3px
-        classDef blueClassDashed  fill:lightblue,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3
+        externalSwitch === |eth0: 192.168.1.100| VMrouter[fa:fa-computer VM-router]
+        VMrouter === |eth1: 192.168.2.1| Switch-red:::redClass
+        VMrouter === |eth1: 192.168.2.65| Switch-green:::greenClass
+        VMrouter === |eth1: 192.168.2.129| Switch-blue:::blueClass
 
+        %% RED SUBNET
 
-        subnet-red:::redClass
-        subnet-green:::greenClass
-        subnet-blue:::blueClass
         Switch-red(fa:fa-server switch-red)
-        Switch-red === VM-red-a
-        Switch-red === VM-red-b
-
-        subgraph subnet-red["Subnet Red"]
-            direction LR
+        Switch-red === |eth0| VM-red-a
+        Switch-red === |eth0| VM-red-b
+        subnet-red:::redClass
+        subgraph subnet-red["192.168.2.0 to 192.168.2.63"]
+            direction TB
             VM-red-a(fa:fa-computer VM-red-a)
             VM-red-b(fa:fa-computer VM-red-b)
         end
 
-        Switch-green(fa:fa-server switch-green)
-        Switch-green === VM-green-a
-        Switch-green === VM-green-b
+        %% GREEN SUBNET
 
-        subgraph subnet-green["Subnet Green"]
-            direction LR
+        Switch-green(fa:fa-server switch-green)
+        Switch-green === |eth0| VM-green-a
+        Switch-green === |eth0| VM-green-b
+        subnet-green:::greenClass
+        subgraph subnet-green["192.168.2.64 to 192.168.2.127"]
+            direction TB
             VM-green-a(fa:fa-computer VM-green-a)
             VM-green-b(fa:fa-computer VM-green-b)
         end
 
+        
+        %% BLUE SUBNET
+
         Switch-blue(fa:fa-server switch-blue)
-        Switch-blue === VM-blue-a
-        Switch-blue === VM-blue-b
-        subgraph subnet-blue["Subnet Blue"]
-            direction LR
+        Switch-blue === |eth0| VM-blue-a
+        Switch-blue === |eth0| VM-blue-b
+        subnet-blue:::blueClass
+        subgraph subnet-blue["192.168.2.128 to 192.168.2.191"]
+            direction TB
             VM-blue-a(fa:fa-computer VM-blue-a)
             VM-blue-b(fa:fa-computer VM-blue-b)
         end
-    end
+
+        classDef greenClass fill:#bdf0cc,stroke:#333,stroke-width:3px, color: black;
+        classDef greenClassDashed fill:#bdf0cc,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3, color: black;
+        classDef redClass  fill:#f0bdc7,stroke:#333,stroke-width:3px, color: black;
+        classDef redClassDashed  fill:#f0bdc7,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3, color: black;
+        classDef blueClass  fill:lightblue,stroke:#333,stroke-width:3px, color: black;
+        classDef blueClassDashed  fill:lightblue,stroke:#333,stroke-width:2px, stroke-dasharray: 4 3, color: black;
+end
 ```
 
-## Commands
-
-# ip commmand
-
-## Basics
-
-```
-ip addr show
-
-5: eth3: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 00:15:5d:01:0b:12 brd ff:ff:ff:ff:ff:ff
-```
-
-- `eth3`: This is the name of the network interface.
-- `<BROADCAST,MULTICAST>`: These are the flags that indicate the capabilities and status of the interface. BROADCAST means that the interface can send and receive broadcast packets, which are packets that are addressed to all hosts on a network segment. MULTICAST means that the interface can send and receive multicast packets, which are packets that are addressed to a group of hosts that share a common interest.
-- `mtu 1500`: This is the maximum transmission unit (MTU) of the interface, which is the maximum size of a packet that can be sent or received by the interface without fragmentation. The default value for Ethernet interfaces is 1500 bytes.
-- `qdisc noop`: This is the queuing discipline (qdisc) of the interface, which is a mechanism that controls how packets are queued and dequeued for transmission or reception. The noop qdisc means that there is no queuing discipline applied, and packets are sent or received as soon as possible.
-- `state DOWN`: This is the state of the interface, which indicates whether it is active or not. The DOWN state means that the interface is not active, either because it has no carrier signal (such as a cable unplugged) or because it has been manually disabled by an administrator. To change the state of an interface, you can use ip link set up or ip link set down commands
-- `group default`: This is the group name of the interface, which allows you to assign multiple interfaces to a single group for easier management. The default group name means that no specific group has been assigned to this interface. You can change the group name of an interface using ip link set group command
-- `qlen 1000`: This is the transmit queue length (txqueuelen) of the interface, which is how many packets can be queued for transmission before they are dropped by the kernel. The default value for Ethernet interfaces is 1000 packets.
-- `link/ether 00:15:5d:01:0b:12 brd ff:ff:ff:ff:ff:ff`: MAC address (media access control address) of the Ethernet device. The **brd** part stands for broadcast, and shows the broadcast address ff:ff:ff:ff:ff: ff in hexadecimal notation. A broadcast address is used to send a packet to all devices on a network segment.
-
-## For each VM ensure that the state is UP
-
-## How to turn on state UP (not persistent after reboot)
-
-```
-sudo ip link set up dev eth3
-```
-
-## How to turn on state UP (persistent after reboot) Ubuntu Server 22.10
-
-```
-# Edit the configuration file, this is also how you can assign a static ip address
-
-sudo vim /etc/netplan/00-installer-config.yaml
-
-```
-
-## How to check the DHCP leases of each interface
-
-```
-agontcharov@router:~$ netplan ip leases eth0
-# This is private data. Do not parse.
-ADDRESS=192.168.1.18
-NETMASK=255.255.255.0
-ROUTER=192.168.1.1
-SERVER_ADDRESS=192.168.1.1
-T1=43200
-T2=75600
-LIFETIME=86400
-DNS=192.168.1.1
-CLIENTID=<----------------------->
-```
-
-## Set up DHCP
