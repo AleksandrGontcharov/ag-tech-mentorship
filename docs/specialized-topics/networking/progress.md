@@ -47,8 +47,8 @@ graph BT
     subgraph hyper-V["Hyper-V"]
         externalSwitch === |eth0: 192.168.1.100| VMrouter[fa:fa-computer VM-router]
         VMrouter === |eth1: 192.168.2.1| Switch-red:::redClass
-        VMrouter === |eth1: 192.168.2.65| Switch-green:::greenClass
-        VMrouter === |eth1: 192.168.2.129| Switch-blue:::blueClass
+        VMrouter === |eth2: 192.168.2.65| Switch-green:::greenClass
+        VMrouter === |eth3: 192.168.2.129| Switch-blue:::blueClass
 
         %% RED SUBNET
 
