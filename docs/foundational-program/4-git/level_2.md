@@ -304,7 +304,6 @@ default message that is suitable for most cases.
 
 After this commit, you are at:
 
-
 <div style={{textAlign: 'center'}}>
 
 ![image](/img/git_tutorial/9.git_revert.png)
@@ -315,17 +314,300 @@ After this commit, you are at:
 
 ### 1. Creating a new branch
 
+Let's return to this point:
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/5.git_commit.png)
+
+</div>
+
+```bash
+git branch feature
+```
+
+* This sticks the **label*** `feature` onto that commit object. That's it.
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/10.git_branch.png)
+
+</div>
+
+How is this reflected in the `git log`?
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline
+89362f3 (HEAD -> master, feature) My second commit
+77452bd My first commit
+```
+
 ### 2. Switching to a new branch
+
+```bash
+git switch feature
+```
+Alternatively: `git checkout feature` or `git checkout -b feature` to both create and switch to the `feature` branch.
+
+At this point,
+* The `HEAD` label moves over to the `feature` label
+* This means that `git` will now advance the feature branch when you do a `commit`
+
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/11.git_switch.png)
+
+</div>
+
+How is this reflected in the `git log`?
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline
+89362f3 (HEAD -> feature, master) My second commit
+77452bd My first commit
+```
 
 ### 3. Committing on a new branch
 
+```
+echo "this was added on the feature branch" >> my_second_file.txt
+git add my_second_file.txt
+git commit -m "first commit on the feature branch"
+```
+
+At this point:
+* Created a new commit object with ID `C`
+* Moved the `HEAD` and `FEATURE` labels
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/12.git_branch.png)
+
+</div>
+
+How is this reflected in the `git log`?
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline
+192c0ef (HEAD -> feature) first commit on the feature branch
+89362f3 (master) My second commit
+77452bd My first commit
+```
+
 ### Merging
+
+:::note
+We would normally do this through a pull request on the remote. However, knowing how to merge is important. For example, if you create a branch from `master` and it has become out of date with the `master` branch, you may need to merge the master branch into your branch before creating the pull request. More on Pull Requests and remote repositories later.
+:::
 
 ### 1. Merging the branch - simple merge
 
+So your `feature` is ready, and you want to merge it back to `master`
+
+```bash
+git switch master
+```
+
+Alternatively, to switch to the last branch that you were at, you can use `git switch -`.
+
+At this point
+
+* You have moved the `HEAD` back to the `master` branch.
+
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/13.git_merge.png)
+
+</div>
+
+How is this reflected in the `git log`?
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline
+89362f3 (HEAD -> master) My second commit
+77452bd My first commit
+```
+
+Now we will merge from the feature to the master. You are pulling the changes from the `feature` branch into the `master` branch.
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git merge feature
+Updating 89362f3..192c0ef
+Fast-forward
+ my_second_file.txt | 1 +
+ 1 file changed, 1 insertion(+)
+```
+
+At this point:
+* The label `HEAD -> master` simply moved up in the diagram
+* This is reflected in the message fast-forward printed when you execute this kind of merge
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/14.git_merge.png)
+
+</div>
+
+
+How is this reflected in the `git log`?
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline
+192c0ef (HEAD -> master, feature) first commit on the feature branch
+89362f3 My second commit
+77452bd My first commit
+```
+
+
+:::tip
+In the simple merge example, we could have told git explicitly to not use fast-forwardrd** with
+`git merge --no-ff`
+
+This would produce this result.
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git merge --no-ff feature
+Merge made by the 'ort' strategy.
+ my_second_file.txt | 1 +
+ 1 file changed, 1 insertion(+)
+user@host:~/repos/ag-git-tutorial$ git log --oneline --graph
+*   91bc64a (HEAD -> master) Merge branch 'feature'
+|\
+| * 0cb0b28 (feature) first commit on the feature branch
+|/
+* 89362f3 My second commit
+* 77452bd My first commit
+```
+
+Note that we are using `--graph` to see that this type of merge create a new commit. This is the default behavior for GitHub pull requests.
+:::
 
 ### 1. Merging the branch - complex merge
 
+Let's return to this point:
+<div style={{textAlign: 'center'}}>
 
-## Remote repositories
+![image](/img/git_tutorial/5.git_commit.png)
+
+</div>
+
+Create the `feature` branch, commit to it, then switch back to `master`
+```
+git checkout -b feature
+echo "this was added on the feature branch" >> my_second_file.txt
+git add my_second_file.txt
+git commit -m "first commit on the feature branch"
+git switch master
+```
+
+At this point:
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/13.git_merge.png)
+
+</div>
+
+How is this reflected in the `git log`?
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline
+89362f3 (HEAD -> master) My second commit
+77452bd My first commit
+```
+
+Suppose that while you were working on your `feature` branch, someone had updated the `master`
+branch as follows.
+
+```bash
+git switch master
+echo "this was added on the master
+branch while the feature branch was
+being developed" >> my_second_file.txt
+git add my_second_file.txt
+git commit -m "fix bug in master"
+```
+
+At this point:
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/15.git_merge.png)
+
+</div>
+
+Note that you can use a few extra switches with `git log` to see this graph
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline --graph --all
+* d522ef5 (HEAD -> master) fix bug in master
+| * e675254 (feature) first commit on the feature branch
+|/
+* 89362f3 My second commit
+* 77452bd My first commit
+```
+
+You are now ready to merge your `feature` branch into `master`. 
+
+Make sure you are on the `master` branch and run
+
+```bash
+git merge feature
+```
+
+At this point:
+* If you did it right, you will get a merge conflict. Why? Because line 2 of  `my_second_file.txt` is different on each branch. So you need to tell `git` how to reconcile these changes.
+
+At this point, you can panic, and abort the whole process with
+
+```bash
+git merge --abort
+```
+
+OR
+
+You can resolve the conflict!
+
+It is a good idea to use a **tool*** to resolve the merge. There are many such tools. We will use an extension in Visual Studio Code to resolve the conflict.
+
+Open VS Code from the current directory.
+
+```bash
+code .
+```
+
+
+In the **Source Control** on the sidebar, lick on the file `my_second_file.txt`, click on  `Resolve in Merge Editor` in the bottom right corner.
+
+
+<div style={{textAlign: 'center'}}>
+
+![image](/img/git_tutorial/16.vscode_merge.png)
+
+</div>
+
+You will see three windows - **Current** (the file as it is in `master`) **Incoming** (the file as it is in `feature`) and the **Result**.
+
+Let's say that in this case we want to keep all three lines, click on **Accept incoming** and **Accept current**, and you will see the **Result** as the merged file. Click on **Complete Merge**.
+
+At this point, return to your command line, and check the `git status`. You will see that the file is now staged. You can `commit` this file by typing
+
+```bash
+git merge --continue
+```
+
+This will bring up a commit message window with the default message "Merge branch 'feature'", save and exit.
+
+Let's see how this new commit is reflected  with `git log`. Note the use of `--graph`.
+
+```shell-session
+user@host:~/repos/ag-git-tutorial$ git log --oneline --graph
+*   b854bb8 (HEAD -> master) Merge branch 'feature'
+|\
+| * e675254 (feature) first commit on the feature branch
+* | d522ef5 fix bug in master
+|/
+* 89362f3 My second commit
+* 77452bd My first commit
+```
+
 
