@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-#   Progress
+# ✅Progress
 
 **Prerequisite:** Set up Hyper-V.
 
