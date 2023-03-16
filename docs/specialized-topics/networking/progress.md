@@ -310,12 +310,15 @@ sudo iptables -t nat -X
 sudo netfilter-persistent save
 ```
 
+The commands above flush (-F) all existing rules, delete (-X) any user-defined chains, and set the default policies for INPUT, OUTPUT, and FORWARD chains to ACCEPT. This ensures that we start with a clean slate and all traffic is allowed by default.
 
 1.  Set the default policy for the FORWARD chain to DROP:
 
 ```bash
 sudo iptables -P FORWARD DROP
 ```
+
+The commands above set the default policy for the FORWARD chain to DROP, meaning all traffic will be dropped unless explicitly allowed.
 
 2.  Allow traffic between eth1, eth2, and eth3:
 
@@ -346,6 +349,8 @@ sudo iptables -t nat -A POSTROUTING -o eth0 -s 192.168.2.64/26 -j SNAT --to-sour
 sudo iptables -t nat -A POSTROUTING -o eth0 -s 192.168.2.128/26 -j SNAT --to-source your_public_ip
 ```
 
+These commands set up SNAT to translate the source IP addresses of the VMs connected to eth1, eth2, and eth3 to your public IP address when they access the internet. The -t nat flag specifies that we are working with the NAT table, and the POSTROUTING chain is where we add the SNAT rules.
+
 :::warning
 note that your_public_ip in this case will be the IP assigned to eth0, and would not be your actual public ip.
 :::
@@ -357,6 +362,9 @@ sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j
 sudo iptables -A FORWARD -i eth0 -o eth2 -m state --state RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -A FORWARD -i eth0 -o eth3 -m state --state RELATED,ESTABLISHED -j ACCEPT
 ```
+
+These commands allows incoming traffic from the internet to eth1, eth2 and eth3 if it's part of an established or related connection.
+
 
 6.  Allow traffic from eth1, eth2, and eth3 to use eth0 as a gateway to the internet:
 ```
