@@ -183,3 +183,59 @@ network:
 ```
 
 </details>
+
+## Configure NAT
+
+- [x] Configure NAT (specifically SNAT) on the router so VMs can reach internet. U can use 8.8.8.8 as a DNS server for now (Google's public dns) or your ISP dns (or your home router)
+
+Explanation for eth1.
+I have configured SNAT on your Ubuntu server acting as a router. The essential configuration for SNAT is the iptables rule:
+
+`sudo iptables -t nat -A POSTROUTING -o eth0 -s 192.168.2.0/26 -j MASQUERADE`
+
+This rule performs SNAT for the 192.168.2.0/26 subnet (eth1), allowing VMs on this subnet to access the internet through the router's eth0 interface.
+
+-   `-t nat`: Specifies the 'nat' table, where rules for address translation are stored.
+-   `-A POSTROUTING`: Appends a rule to the POSTROUTING chain, which is responsible for modifying the source address of packets after the routing decision has been made.
+-   `-o eth0`: Matches packets that are going out through the eth0 interface (connected to the internet).
+-   `-s 192.168.2.0/26`: Matches packets originating from the 192.168.2.0/26 subnet (eth1).
+-   `-j MASQUERADE`: The target action to perform when the rule matches. The MASQUERADE target performs SNAT, replacing the source IP address of the packets with the router's public IP address (in this case, the IP address of the eth0 interface).
+
+In summary, this rule tells iptables to perform Source Network Address Translation (SNAT) for packets originating from the 192.168.2.0/26 subnet (eth1) and going out through the eth0 interface (connected to the internet). This allows VMs on the eth1 subnet to access the internet using the router's public IP address as the source address for their packets, effectively hiding their private IP addresses from the external network.
+
+Additionally, I have set up a DHCP server that assigns IP addresses to the VMs on the eth1 subnet and provides them with the DNS server information (8.8.8.8). These settings, along with the SNAT rule, enable the VMs on the eth1 subnet to access the internet using your Ubuntu server as a router.
+
+<details>
+<summary>sudo vim /etc/dhcp/dhcpd.conf</summary>
+
+```
+default-lease-time 600;
+max-lease-time 7200;
+
+ddns-update-style none;
+
+authoritative;
+
+# RED
+subnet 192.168.2.0 netmask 255.255.255.192 {
+  range 192.168.2.2 192.168.2.62;
+  option routers 192.168.2.1;
+  option domain-name-servers 8.8.8.8;
+  interface eth1;
+}
+# GREEN
+subnet 192.168.2.64 netmask 255.255.255.192 {
+  range 192.168.2.66 192.168.2.126;
+  option routers 192.168.2.65;
+  option domain-name-servers 8.8.8.8;
+  interface eth2;
+}
+# BLUE
+subnet 192.168.2.128 netmask 255.255.255.192 {
+  range 192.168.2.130 192.168.2.190;
+  option routers 192.168.2.129;
+  option domain-name-servers 8.8.8.8;
+  interface eth3;
+}
+```
+</details>
