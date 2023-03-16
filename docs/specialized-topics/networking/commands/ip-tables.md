@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-#  ip-tables
+#  iptables
 ___
 `iptables` is a command-line utility in Linux-based systems used to manage and configure the IP packet filtering rules in the kernel's netfilter framework. It allows administrators to define rules for processing incoming and outgoing network traffic based on IP addresses, protocols, ports, and other criteria. These rules can be used for various purposes, such as filtering, NAT (Network Address Translation), and port forwarding.
 
@@ -56,3 +56,29 @@ sudo iptables -t nat -A POSTROUTING -o <public_interface> -j MASQUERADE`
 
 
 In this command, `<public_interface>` should be replaced with the name of the network interface connected to the internet (e.g., eth0).
+
+## Tables in iptables
+
+1.  Filter table: This is the default table in iptables and is mainly used for filtering packets based on their content. It has three built-in chains:
+    
+    -   INPUT: This chain processes packets destined for the local system.
+    -   FORWARD: This chain processes packets that are routed through the local system (i.e., the system is acting as a router for these packets).
+    -   OUTPUT: This chain processes packets originating from the local system.
+2.  NAT table: This table is specifically used for Network Address Translation (NAT) and contains three built-in chains:
+    
+    -   PREROUTING: This chain processes packets as soon as they arrive on a network interface, before routing decisions are made. It's mainly used for Destination NAT (DNAT).
+    -   OUTPUT: This chain processes locally generated packets that require NAT, before they are sent out of a network interface.
+    -   POSTROUTING: This chain processes packets after routing decisions have been made and just before they leave a network interface. It's mainly used for Source NAT (SNAT) or Masquerading.
+3.  Mangle table: This table is used for specialized packet alteration and has five built-in chains:
+    
+    -   PREROUTING: This chain processes packets as soon as they arrive on a network interface, before routing decisions are made.
+    -   INPUT: This chain processes packets destined for the local system.
+    -   FORWARD: This chain processes packets that are routed through the local system.
+    -   OUTPUT: This chain processes packets originating from the local system.
+    -   POSTROUTING: This chain processes packets after routing decisions have been made and just before they leave a network interface.
+4.  Raw table: This table is used for configuring exemptions from connection tracking in combination with the NOTRACK target. It has two built-in chains:
+    
+    -   PREROUTING: This chain processes packets as soon as they arrive on a network interface, before routing decisions are made.
+    -   OUTPUT: This chain processes packets originating from the local system.
+
+Only the NAT table is specifically related to NAT, while the other tables serve different purposes in the packet processing flow.
