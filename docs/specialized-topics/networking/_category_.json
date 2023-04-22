@@ -1,7 +1,4 @@
 {
   "label": " Networking",
-  "position": 3,
-  "link": {
-    "description": "Foundational python"
-  }
+  "position": 3
 }

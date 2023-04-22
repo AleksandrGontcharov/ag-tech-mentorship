@@ -22,7 +22,7 @@ Let's start from the beginning
 ## Do Work, Add, Commit
 ---
 
-Create empty directory and cd into it
+Create an empty directory and `cd` into it
 
 ```shell-session
 user@host:~/repos$ mkdir ag-git-tutorial
@@ -204,9 +204,9 @@ git show cf0de9b:my_first_file.txt
 
 ## Undo, undo!
 ---
-Okay, so everything is going great. Do work --> Add --> Commit --> Do work.. 
+Okay, so everything is going great. Do work --> Add --> Commit --> Do work... 
 
-Until.. Oh no, I made a mistake. I would like to go back and fix something.
+Until… Oh no, you made a mistake, so you would like to go back and fix something.
 
 In this section, we discuss how to do that.
 
@@ -269,9 +269,9 @@ However, you can also
 1. Make required change
 2. `git add`
 3. `git commit --amend` 
-	1. the commit message will appear, you can edit it, or simply hit save and exit.
+	1. The commit message will appear, you can edit it, or simply hit save and exit.
 
-At this point, your commit ID `B` will be overwritten with a new commit ID, but your history will sitll look like this: 
+At this point, your commit ID `B` will be overwritten with a new commit ID, but your history will still look like this: 
 
 <div style={{textAlign: 'center'}}>
 
@@ -282,7 +282,7 @@ At this point, your commit ID `B` will be overwritten with a new commit ID, but 
 
 :::tip
 ####  Where did all of those commits go?
-You may notice that when you use `git reset` or `git commit --amend`,  it seems like you are rewriting history. You may also notice that the commit IDs have changed. What happened to those other commits?
+You may notice that when you use `git reset` or `git commit --amend`, it seems like you are rewriting history. You may also notice that the commit IDs have changed. What happened to those other commits?
 
 You can use `git reflog` to see **all** of your previous commits, including the ones that are not visible with `git log`
 :::
@@ -299,7 +299,7 @@ Why would you want to keep it in history?
 git revert <bad commit-id>
 ```
 
-Since you are simply creating a new commit you can enter a commit message here. You will see a
+Since you are simply creating a new `commit`, you can enter a commit message here. You will see a
 default message that is suitable for most cases.
 
 After this commit, you are at:
@@ -408,9 +408,9 @@ So your `feature` is ready, and you want to merge it back to `master`
 git switch master
 ```
 
-Alternatively, to switch to the last branch that you were at, you can use `git switch -`.
+Alternatively, to switch to the last branch that you were at, you can use `git switch -`
 
-At this point
+At this point:
 
 * You have moved the `HEAD` back to the `master` branch.
 
@@ -460,7 +460,7 @@ user@host:~/repos/ag-git-tutorial$ git log --oneline
 
 
 :::tip
-In the simple merge example, we could have told git explicitly to not use fast-forwardrd** with
+In the simple merge example, we could have told git explicitly to not use **fast-forward** with
 `git merge --no-ff`
 
 This would produce this result.
@@ -535,7 +535,7 @@ At this point:
 
 </div>
 
-Note that you can use a few extra switches with `git log` to see this graph
+Note that you can use a few extra switches with `git log` to see this graph.
 
 ```shell-session
 user@host:~/repos/ag-git-tutorial$ git log --oneline --graph --all
@@ -567,7 +567,7 @@ OR
 
 You can resolve the conflict!
 
-It is a good idea to use a **tool*** to resolve the merge. There are many such tools. We will use an extension in Visual Studio Code to resolve the conflict.
+It is a good idea to use a **tool*** to resolve the merge. There are many such tools. We will use Visual Studio Code to resolve the conflict.
 
 Open VS Code from the current directory.
 
@@ -576,8 +576,7 @@ code .
 ```
 
 
-In the **Source Control** on the sidebar, lick on the file `my_second_file.txt`, click on  `Resolve in Merge Editor` in the bottom right corner.
-
+In the **Source Control** on the sidebar, click on the file `my_second_file.txt` and then click on `Resolve in Merge Editor` in the bottom right corner.
 
 <div style={{textAlign: 'center'}}>
 
@@ -597,7 +596,7 @@ git merge --continue
 
 This will bring up a commit message window with the default message "Merge branch 'feature'", save and exit.
 
-Let's see how this new commit is reflected  with `git log`. Note the use of `--graph`.
+Let's see how this new commit is reflected with `git log`. Note the use of `--graph`.
 
 ```shell-session
 user@host:~/repos/ag-git-tutorial$ git log --oneline --graph

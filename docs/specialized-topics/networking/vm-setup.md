@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-#   VM Setup
+# 🖥️VM Setup
 
 ---
 The following configurations are recommended **for this exercise only** in order to save time.
