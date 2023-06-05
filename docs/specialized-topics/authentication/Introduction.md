@@ -96,3 +96,39 @@ The `Authorization code flow` is a front channel flow, designed to take advantag
 4. Finally, the client can use the access token to get access to the Google contacts, and the Google contacts API will allow this because the access token proves that the client is authorized to get this information. The access token is *scoped* to limit the client to the requested scopes in step 1.
 	* (back channel) This is also done on the back channel since, theoretically, anyone with the access token can call the API, and this access token can be intercepted if it is done through the front channel.
 
+### Authorization code flow
+
+1. Authorization code flow (front channel + back channel)
+2. Implicit (front channel only)
+3. Resource owner password credentials (back channel only)
+4. Client credentials (back channel only)
+
+#### Back to history
+
+Pre-2014 people were using OAuth 2.0 (meant for authorization) for authentication. OAuth was never designed to be used for authentication! 
+* In OAuth, there's no standard way to get the user's information, since OAuth was designed for scopes. 
+* No Common set of scopes
+* Every implementation of authentication is a little difference
+
+All the different companies created custom hacks on top of OAuth to create authentication, each solving the problems such as getting the user info. All of these implementations were a little different.
+
+### OpenID Connect (OIDC)
+
+* OAuth 2.0 + Authentication extension.
+
+OpenID Connect (OIDC) extends the OAuth 2.0 authorization protocol for use as an additional authentication protocol. You can use OIDC to enable single sign-on (SSO) between your OAuth-enabled applications by using a security token called an _ID token_.
+
+*ID Token* 
+
+* UserInfo endpoint for getting more user information
+* Standard set of scopes
+* Standardized implementation
+
+"Log in with Google"
+
+scope: `openid profile`
+
+The authorization code can be used to fetch user's information.
+
+
+
