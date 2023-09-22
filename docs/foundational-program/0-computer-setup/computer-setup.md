@@ -100,14 +100,18 @@ You may need to open PowerShell as Administrator
 
 ```powershell
 # Visual Studio Code
-winget install -e --id Microsoft.VisualStudioCode`
+winget install -e --id Microsoft.VisualStudioCode
 # Obsidian (Markdown Editor)
 winget install -e --id Obsidian.Obsidian
-# Node JS
+# Node JS and Yarn
 winget install -e --id OpenJS.NodeJS
+winget install -e --id Yarn.Yarn
 # Python (install latest version (3.11 as of this writing))
 winget search Python.Python # search for latest version
 winget install Python.Python.3.11
+# Install Git and GitHub CLI and Tools
+winget install -e --id GitHub.cli
+winget install -e --id Git.Git
 ```
 
 ### Install Chocolatey
