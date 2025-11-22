@@ -15,7 +15,7 @@ sidebar_position: 2
 
 ### Create the VMs
 
-- [x] Create 6 VMs {red,green,blue}-{a,b} [e.g. `red-a`, `red-b`, `green-a`,….] and connect them to the appropriate switches.
+- [x] Create 6 VMs `{red,green,blue}-{a,b}` [e.g. `red-a`, `red-b`, `green-a`,….] and connect them to the appropriate switches.
 
   - Use UI-less (server) ubuntu SKU  (choose last LTS)
   - without DHCP

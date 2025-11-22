@@ -11,7 +11,7 @@ You should do that sequentially (order is intentionally chosen) and can choose t
 As you do things I advise to capture some key learnings, conclusions or even snippets of concrete commands right in this document using different font or color, as you do things. Try to keep it compressed. You'll realize that this will be a useful document for you to return later at some point for hints or instructions on how to do something.
 
 - Create 3 networks (private virtual switches in Hyper-V) without DHCP: Red, Green, Blue
-- Create 6 VMs {red,green,blue}-{a,b} [e.g. red-a, red-b, green-a,….]
+- Create 6 VMs `{red,green,blue}-{a,b}` [e.g. red-a, red-b, green-a,….]
   - Use UI-less (server) ubuntu SKU (choose last LTS)
   - Verify that they indeed **fail** to acquire IP address, as there's no DHCP
 - Create 1 VM "router"
@@ -29,7 +29,7 @@ As you do things I advise to capture some key learnings, conclusions or even sni
 - Experiment with various Iptables rules by allowing/disallowing routing between RED/BLUE/GREEN network and verify if it is working but leave that in a state where it is allowed by explicit rules.
 - _Install your own DNS server on router VM (with recursive mode) on router and update dhcp to use this one_
   - _Configure DNS server to host three domains .red .blue .green so each VM gets a host name within these domains. Use DHCP to communicate domain name suffix for each VMs. Ensure that DNS server is forwarding traffic to the internet to be able to resolve hosts like_ [_www.microsoft.com_](http://www.microsoft.com/) _from your blue/red/green networks._
-    - Bonus point – (optional) find a way how to ensure that hosts in a red network can resolve \*.{green,red,blue} names but can't resolve internet hostnames
+    - Bonus point – (optional) find a way how to ensure that hosts in a red network can resolve `*.{green,red,blue}` names but can't resolve internet hostnames
 - Simulate ARPOISON attack.
   - Learn how to use arp tool, run it on various vms to inspect state of local ARP cache.
   - Add third Evil-VM in GREEN network
