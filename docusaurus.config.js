@@ -1,8 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const {themes} = require('prism-react-renderer');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -23,7 +22,6 @@ const config = {
   deploymentBranch: 'master',
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -33,10 +31,12 @@ const config = {
     locales: ['en'],
   },
 
-  // Add mermaid support
-
+  // Add mermaid support and markdown configuration
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
   themes: ['@docusaurus/theme-mermaid'],
 
@@ -119,19 +119,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} AG Tech Mentorship, Inc.`,
       },
       prism: {
-        // theme: require('prism-react-renderer/themes/dracula'),
-        // theme: require('prism-react-renderer/themes/github'),
-        // theme: require('prism-react-renderer/themes/duotoneDark'),
-        // theme: require('prism-react-renderer/themes/nightOwl'),
-        theme: require('prism-react-renderer/themes/oceanicNext'),
-        // theme: require('prism-react-renderer/themes/okaidia'),
-        // theme: require('prism-react-renderer/themes/palenight'),
-        // theme: require('prism-react-renderer/themes/shadesOfPurple'),
-        // theme: require('prism-react-renderer/themes/synthwave84'),
-        // theme: require('prism-react-renderer/themes/ultramin'),
-        // theme: require('prism-react-renderer/themes/vsDark'),
-        // theme: lightCodeTheme,
-        darkTheme: require('prism-react-renderer/themes/nightOwl'),
+        theme: themes.oceanicNext,
+        darkTheme: themes.nightOwl,
         additionalLanguages: ['powershell', 'csharp', 'shell-session'],
       },
     }),
